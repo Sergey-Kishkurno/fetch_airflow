@@ -57,7 +57,7 @@ def fetch_data():
 
     with open(loading_dates["date"] + ".txt", 'w+', encoding='utf-8') as f:
         f.write(json.dumps(result))
-        print(f"Wrote data to file {loading_dates['date'] + '.txt'}")
+        print(f"Wrote data to file {'data/' + loading_dates['date'] + '.txt'}")
 
 
 if __name__ == '__main__':
