@@ -1,4 +1,6 @@
+import os
 import requests
+from datetime import date
 import json
 from urllib.parse import urljoin
 
@@ -55,9 +57,17 @@ def fetch_data():
 
     result = response.json()
 
-    with open(loading_dates["date"] + ".txt", 'w+', encoding='utf-8') as f:
+    dir_name = os.path.join('/home/user/data_' + str(date.today()))
+    # '/Users/imac/Projects/data_engineering/fetch_airflow/data_'
+    # /home/user/data
+    os.makedirs(dir_name, exist_ok=True)
+
+
+    file_name = os.path.join(dir_name, loading_dates['date']+'.txt')
+
+    with open(file_name, 'w+', encoding='utf-8') as f:
         f.write(json.dumps(result))
-        print(f"Wrote data to file {'data/' + loading_dates['date'] + '.txt'}")
+        print(f"Wrote data to file {file_name}")
 
 
 if __name__ == '__main__':
